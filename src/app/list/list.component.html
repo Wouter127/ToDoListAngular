@@ -1,0 +1,5 @@
+<div *ngIf="list">
+    <ul class="{{list.category}}">{{list.name}}
+        <app-list-item *ngFor="let listItem of listItems" [listItem]="listItem"></app-list-item>
+    </ul>
+</div>
