@@ -1,8 +1,11 @@
+import { Status } from "./status";
+
 export interface ListItem {
     id: number,
-    list_id: number,
+    listId: number,
+    title: string,
     description: string,
     date: string,
-    status: string,
-    order: number
+    statusId: number,
+    order: number,
 }

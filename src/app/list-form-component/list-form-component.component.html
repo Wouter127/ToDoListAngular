@@ -1,0 +1,85 @@
+<h1>{{getTitle()}}</h1>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>
+<!--<div class="alert alert-warning" role="warning">
+  <p>Form Status: {{ listForm.status }}</p>
+</div>-->
+<form (ngSubmit)="onSubmit()" [formGroup]="listForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="name" type="text" class="form-control" id="name" name="name" placeholder="Name"
+            formControlName="name" minlength="2">
+    </div>
+    <div class="form-group">
+        <label for="backgroundColor">Color</label>
+        <div style="display:flex">
+            <ngx-colors ngx-colors-trigger formControlName="color" [(ngModel)]="backgroundColor" ></ngx-colors>
+        <div class="form-control ml-3">{{backgroundColor}}</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="textColor">Text color</label>
+        <div style="display:flex">
+            <ngx-colors ngx-colors-trigger formControlName="textcolor" [(ngModel)]="textColor" ></ngx-colors>
+        <div class="form-control ml-3">{{textColor}}</div>
+        </div>
+    </div>
+    <h2>Preview:</h2>
+    <div class="list-example mb-3">
+
+        <div class="col-lg-4 col-md-6 col-xs-12 list" [ngStyle]="colors(backgroundColor, textColor)">
+            <div class="row my-3 align-items-center justify-content-around px-3" >
+                <h1 class="col-8 m-0">{{name}}</h1>
+                <button type="button" class="btn btn-success col-auto"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-danger col-auto"><i class="far fa-trash-alt"></i></button>
+            </div>
+            <div class="items">
+                <label>
+                    <span>
+                        <strong>Item 1</strong><span> - a short description</span>
+
+                        <small class="d-block text-muted">
+                            <svg class="bi me-1" width="1em" height="1em">
+                                <use xlink:href="#calendar-event"></use>
+                            </svg>
+                            date
+                        </small>
+                    </span>
+                </label>
+            </div>
+            <div class="items">
+                <label>
+                    <span>
+                        <strong>Item 1</strong><span> - a short description</span>
+
+                        <small class="d-block text-muted">
+                            <svg class="bi me-1" width="1em" height="1em">
+                                <use xlink:href="#calendar-event"></use>
+                            </svg>
+                            date
+                        </small>
+                    </span>
+                </label>
+            </div>
+            <div class="items">
+                <label>
+                    <span>
+                        <strong>Item 1</strong><span> - a short description</span>
+
+                        <small class="d-block text-muted">
+                            <svg class="bi me-1" width="1em" height="1em">
+                                <use xlink:href="#calendar-event"></use>
+                            </svg>
+                            date
+                        </small>
+                    </span>
+                </label>
+            </div>
+
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!listForm.valid || isSubmitted">Add new list</button>
+    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!listForm.valid || isSubmitted">Save</button>
+</form>

@@ -1,2 +1,21 @@
-<h1>Welcome home</h1>
-<app-list *ngFor="let list of (lists$ | async)" [list]="list"></app-list>
+<div>
+    <h1>Welcome home</h1>
+
+    <button type="button" class="btn btn-success addBtn mb-3" (click)="add()"><i class="fas fa-plus"></i> Add new
+        To Do list</button>
+    <div class="row">
+
+        <div *ngFor="let list of lists" class="col-lg-4 col-md-6 col-xs-12 pb-3" cdkDrag>
+            <div class="card p-3 mb-3" [ngStyle]="colors(list.color, list.textcolor)">
+                <div class="row my-3 align-items-center justify-content-around px-3">
+                    <h1 class="col-8 m-0">{{list.name}}</h1>
+                    <button type="button" class="btn btn-success col-auto" (click)="edit(list.id)"><i
+                            class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger col-auto" (click)="delete(list.id)"><i
+                            class="far fa-trash-alt"></i></button>
+                </div>
+                <app-list [list]="list"></app-list>
+            </div>
+        </div>
+    </div>
+</div>

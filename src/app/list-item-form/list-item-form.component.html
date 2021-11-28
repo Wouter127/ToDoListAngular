@@ -1,0 +1,41 @@
+<h1>{{getTitle()}}</h1>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+    {{errorMessage}}
+</div>
+<!--<div class="alert alert-warning" role="warning">
+  <p>Form Status: {{ listForm.status }}</p>
+</div>-->
+<form (ngSubmit)="onSubmit()" [formGroup]="listItemForm">
+
+    <div class="form-group">
+        <label for="title">title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title"
+            formControlName="title" minlength="2">
+    </div>
+
+    <div class="form-group">
+        <label for="descriptoin">Short description</label>
+        <textarea class="form-control" id="descriptoin" name="descriptoin" placeholder="descriptoin"
+            formControlName="descriptoin" minlength="2" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title"
+            formControlName="title" minlength="2">
+    </div>
+
+    <div class="from-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+    </div>
+
+    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!listItemForm.valid || isSubmitted">Add new
+        list</button>
+    <button type="submit" class="btn btn-primary" *ngIf="isEdit"
+        [disabled]="!listItemForm.valid || isSubmitted">Save</button>
+</form>

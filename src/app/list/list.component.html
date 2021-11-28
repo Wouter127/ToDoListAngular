@@ -1,5 +1,25 @@
-<div *ngIf="list">
-    <ul class="{{list.category}}">{{list.name}}
-        <app-list-item *ngFor="let listItem of listItems" [listItem]="listItem"></app-list-item>
-    </ul>
+<div cdkDropList (cdkDropListDropped)="drop($event)" class="list">
+
+    <div *ngFor="let listItem of listItems" class="items" cdkDrag>
+        <div>
+            <label>
+                <span>
+                    <strong>{{listItem.title}}</strong>
+                    <span> - {{listItem.description}}</span>
+                    <small class="d-block text-muted">{{listItem.date}}</small>
+                </span>
+            </label>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success col-auto" (click)="edit(list.id)"><i
+                class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-danger col-auto" (click)="delete(list.id)"><i
+                class="far fa-trash-alt"></i></button>
+        </div>
+
+<app-list-item [listItem]="listItem"></app-list-item>
+    </div>
+
+
+    
 </div>

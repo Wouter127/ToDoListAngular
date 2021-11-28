@@ -1,58 +1,55 @@
 import { Injectable } from '@angular/core';
 import { ListItem } from './list-item';
 
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ListItemService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {
+  }
 
-  getListItems(): ListItem[] {
-    let listItems: ListItem[] = [];
+  getListItems(): Observable<ListItem[]> {
+    return this.httpClient.get<ListItem[]>("http://localhost:3000/items");
+  }
 
-    let listItem1: ListItem = {
-      id: 1,
-      list_id: 1,
-      date: "nog ni",
-      description: "first item",
-      order: 1,
-      status: "busy"
-    };
+  getListItemById(id: number): Observable<ListItem> {
+    return this.httpClient.get<ListItem>("http://localhost:3000/items/" + id);
+  }
 
-    let listItem2: ListItem = {
-      id: 2,
-      list_id: 1,
-      date: "nog ni",
-      description: "second item",
-      order: 1,
-      status: "busy"
-    };
+  getListItemsExpanded(): Observable<ListItem[]> {
+    return this.httpClient.get<ListItem[]>("http://localhost:3000/items?_expand=list")
+  }
 
-    let listItem3: ListItem = {
-      id: 3,
-      list_id: 1,
-      date: "nog ni",
-      description: "thirth item",
-      order: 3,
-      status: "busy"
-    };
+  getListItemsByListId(listId: number): Observable<ListItem[]> {
+    return this.httpClient.get<ListItem[]>("http://localhost:3000/items?listId=" + listId + "&_expand=status");
+  }
 
-    let listItem4: ListItem = {
-      id: 4,
-      list_id: 2,
-      date: "nog ni",
-      description: "fourth item",
-      order: 1,
-      status: "busy"
-    };
+  getItemsOfList(listId: number) : Observable<ListItem[]> {
+    let params = new HttpParams();
+    params=params.set('listId', listId);
+    params=params.set('_sort', 'order');
+    return this.httpClient.get<ListItem[]>("http://localhost:3000/items", {params: params});
+  }
 
-    listItems.push(listItem1);
-    listItems.push(listItem2);
-    listItems.push(listItem3);
-    listItems.push(listItem4);
+  deleteListItem(id: number): Observable<ListItem> {
+    return this.httpClient.delete<ListItem>('http://localhost:3000/items/' + id);
+  }
+  
+  putListItem(id: number, list: ListItem): Observable<ListItem> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  
+    return this.httpClient.put<ListItem>("http://localhost:3000/items/" + id, list, {headers: headers});
+  }
 
-    return listItems;
+  postListItem(list: ListItem): Observable<ListItem> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
+    return this.httpClient.post<ListItem>("http://localhost:3000/items", list, {headers: headers});
   }
 }
