@@ -19,6 +19,8 @@ export class ListComponent implements OnInit {
   listItems$: Subscription = new Subscription();
   deleteListItem$: Subscription = new Subscription();
 
+  isChecked: boolean = false;
+  value: number = 0;
   errorMessage: string = '';
 
 
@@ -46,13 +48,11 @@ export class ListComponent implements OnInit {
     this.deleteListItem$.unsubscribe();
   }
 
-  add() {
-    console.log("click ADD");
-    
-    this.router.navigate(['newlistitem']);
+  add(listId: number) {
+    this.router.navigate(['newlistitem/' + listId]);
   }
 
-  edit(id: number) {
+  edit(id: number, listId: number) {
     //TODO
     this.router.navigate(['editlistitem/' + id]);
   }

@@ -14,21 +14,21 @@
     <div class="form-group">
         <label for="backgroundColor">Color</label>
         <div style="display:flex">
-            <ngx-colors ngx-colors-trigger formControlName="color" [(ngModel)]="backgroundColor" ></ngx-colors>
+            <ngx-colors ngx-colors-trigger formControlName="color" [(ngModel)]="backgroundColor" [palette]="colorPalette"></ngx-colors>
         <div class="form-control ml-3">{{backgroundColor}}</div>
         </div>
     </div>
     <div class="form-group">
         <label for="textColor">Text color</label>
         <div style="display:flex">
-            <ngx-colors ngx-colors-trigger formControlName="textcolor" [(ngModel)]="textColor" ></ngx-colors>
+            <ngx-colors ngx-colors-trigger formControlName="textcolor" [(ngModel)]="textColor" [palette]="colorPalette"></ngx-colors>
         <div class="form-control ml-3">{{textColor}}</div>
         </div>
     </div>
     <h2>Preview:</h2>
-    <div class="list-example mb-3">
+    <div class="list-example">
 
-        <div class="col-lg-4 col-md-6 col-xs-12 list" [ngStyle]="colors(backgroundColor, textColor)">
+        <div class="col-lg-4 col-md-6 col-xs-12 list mb-3 pb-3" [ngStyle]="colors(backgroundColor, textColor)">
             <div class="row my-3 align-items-center justify-content-around px-3" >
                 <h1 class="col-8 m-0">{{name}}</h1>
                 <button type="button" class="btn btn-success col-auto"><i class="fas fa-edit"></i></button>

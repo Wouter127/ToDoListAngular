@@ -31,7 +31,7 @@ export class ListItemService {
   getItemsOfList(listId: number) : Observable<ListItem[]> {
     let params = new HttpParams();
     params=params.set('listId', listId);
-    params=params.set('_sort', 'order');
+    params=params.set('_sort', 'date');
     return this.httpClient.get<ListItem[]>("http://localhost:3000/items", {params: params});
   }
 

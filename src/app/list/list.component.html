@@ -1,25 +1,37 @@
 <div cdkDropList (cdkDropListDropped)="drop($event)" class="list">
 
-    <div *ngFor="let listItem of listItems" class="items" cdkDrag>
-        <div>
+    <div *ngFor="let listItem of listItems" class="items row align-items-center justify-content-around" cdkDrag>
+        <input type="checkbox" [(ngModel)]="isChecked" class="col-1" value="{{listItem.id}}">
+        <div class="col-9" *ngIf="isChecked"><strong>{{listItem.title}} - DONE</strong></div>
+        <div class="col-7 p-0" *ngIf="isChecked == false">
             <label>
                 <span>
                     <strong>{{listItem.title}}</strong>
                     <span> - {{listItem.description}}</span>
-                    <small class="d-block text-muted">{{listItem.date}}</small>
+                    <small class="d-block text-muted">{{listItem.date | date:'dd/MM/yyyy'}}</small>
                 </span>
             </label>
         </div>
-        <div>
-            <button type="button" class="btn btn-success col-auto" (click)="edit(list.id)"><i
-                class="fas fa-edit"></i></button>
-        <button type="button" class="btn btn-danger col-auto" (click)="delete(list.id)"><i
-                class="far fa-trash-alt"></i></button>
-        </div>
+        
+            <button *ngIf="isChecked == false" type="button" class="btn btn-success col-auto" (click)="edit(listItem.id, listItem.listId)"><i
+                    class="fas fa-edit"></i></button>
+            <button type="button" class="btn btn-danger col-auto" (click)="delete(listItem.id)"><i
+                    class="far fa-trash-alt"></i></button>
+        
 
-<app-list-item [listItem]="listItem"></app-list-item>
+        <app-list-item [listItem]="listItem"></app-list-item>
+    </div>
+    <div class="items">
+        <label>
+            <span>
+                <strong>New Item</strong>
+                <span> - Short item description</span>
+                <small class="d-block text-muted">due date</small>
+            </span>
+        </label>
+        <button type="button" class="btn btn-success addBtn mb-3" (click)="add(list.id)"><i class="fas fa-plus"></i></button>
     </div>
 
 
-    
+
 </div>

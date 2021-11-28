@@ -6,15 +6,18 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { HomeComponent } from './home/home.component';
+import { ListFormComponentComponent } from './list-form-component/list-form-component.component';
+import { ListItemFormComponent } from './list-item-form/list-item-form.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { ListFormComponentComponent } from './list-form-component/list-form-component.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxColorsModule } from 'ngx-colors';
-import { ListItemFormComponent } from './list-item-form/list-item-form.component';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,7 @@ import { ListItemFormComponent } from './list-item-form/list-item-form.component
     ListItemComponent,
     HomeComponent,
     ListFormComponentComponent,
-    ListItemFormComponent
+    ListItemFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,11 +35,15 @@ import { ListItemFormComponent } from './list-item-form/list-item-form.component
     BrowserAnimationsModule,
     DragDropModule,
     ReactiveFormsModule,
-    MatGridListModule,
     NgxColorsModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSliderModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

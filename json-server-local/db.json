@@ -3,88 +3,56 @@
     {
       "id": 3,
       "name": "Femke",
-      "color": "#ba68c8",
-      "textcolor": "#000000"
+      "color": "#000000",
+      "textcolor": "#fafcfc"
     },
     {
       "id": 4,
       "name": "Wouter",
-      "color": "#0000ff",
+      "color": "#b5d4e9",
       "textcolor": "#000000"
     },
     {
       "id": 5,
-      "name": "test",
-      "color": "#fbc02d",
-      "textcolor": "#000000"
-    },
-    {
-      "id": 6,
-      "name": "test2",
-      "color": "#cfd8dc",
+      "name": "Werk",
+      "color": "#added4",
       "textcolor": "#000000"
     },
     {
       "id": 7,
-      "name": "TestProgramme",
-      "color": "#ffffff",
-      "textcolor": "#000000"
-    },
-    {
-      "id": 8,
-      "name": "12345",
-      "color": "#ffc107",
+      "name": "Planning",
+      "color": "#fafcfc",
       "textcolor": "#000000"
     }
   ],
   "items": [
     {
-      "id": 6,
-      "listId": 3,
-      "title": "Cleaning",
-      "description": "The windows need some cleaning",
-      "date": "2021-10-26T22:00:00.000Z",
-      "statusId": 1,
-      "order": 1
-    },
-    {
-      "id": 7,
-      "listId": 3,
-      "title": "Mobile Development",
-      "description": "Deadline to upload project description and team",
-      "date": "2021-10-24T22:00:00.000Z",
-      "statusId": 1,
-      "order": 2
-    },
-    {
-      "id": 8,
-      "listId": 4,
-      "title": "Cleaning",
-      "description": "The windows need some cleaning",
-      "date": "2021-10-26T22:00:00.000Z",
-      "statusId": 1,
-      "order": 1
-    },
-    {
-      "id": 9,
-      "listId": 4,
-      "title": "Mobile Development",
-      "description": "Deadline to upload project description and team",
-      "date": "2021-10-24T22:00:00.000Z",
-      "statusId": 1,
-      "order": 2
-    }
-  ],
-  "statuses": [
-    {
-      "id": 1,
-      "name": "ongoing",
-      "active": true
-    },
-    {
       "id": 2,
-      "name": "done",
-      "active": true
+      "listId": "3",
+      "title": "te lange beschrijving",
+      "description": "wat gebeurt er als de beschrijving te lang is?",
+      "date": "2021-11-28T23:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "listId": "4",
+      "title": "Opdracht Angular",
+      "description": "solo project: Todo applicatie",
+      "date": "2021-11-27T23:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "listId": "4",
+      "title": "fitness",
+      "description": "NRG booischot",
+      "date": "2021-11-28T23:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "listId": "4",
+      "title": "order op datum",
+      "description": "zou normaal vanboven moeten staan",
+      "date": "2021-10-31T23:00:00.000Z"
     }
   ]
 }

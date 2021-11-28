@@ -1,4 +1,4 @@
-import { getLocaleDateTimeFormat } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,8 +12,9 @@ import { ListItemService } from '../list-item.service';
 })
 export class ListItemFormComponent implements OnInit , OnDestroy{
 
+  today: Date = new Date()
+
   itemId: number = 0;
-  listId: number = 0;
   isAdd: boolean = false;
   isEdit: boolean = false;
   isSubmitted: boolean = false;
@@ -30,8 +31,10 @@ export class ListItemFormComponent implements OnInit , OnDestroy{
     date: new FormControl('', [Validators.required]),
   });
 
-  constructor( private router: Router,  private route: ActivatedRoute,
-    private listItemService: ListItemService) {this.isAdd = this.router.url === '/newlistitem'; this.isEdit = !this.isAdd;}
+  constructor( private router: Router,  private route: ActivatedRoute, private listItemService: ListItemService) {
+    this.isAdd = this.router.url.includes('newlistitem');
+    this.isEdit = !this.isAdd;
+  }
 
     ngOnDestroy(): void {
       this.postListItem$.unsubscribe();
@@ -39,8 +42,12 @@ export class ListItemFormComponent implements OnInit , OnDestroy{
     }
 
   ngOnInit(): void {
+    console.log(this.isEdit);
+    
     if (this.isEdit) {
       const id = this.route.snapshot.paramMap.get('id');
+      console.log(id);
+      
       if (id != null) {
         this.itemId = +id;
         this.listItemService.getListItemById(+id).subscribe(result => {this.listItemForm.patchValue({
@@ -48,7 +55,7 @@ export class ListItemFormComponent implements OnInit , OnDestroy{
           listId: result.listId,
           title: result.title,
           description: result.description,
-          Date: result.date,
+          date: result.date,
         });
       });
     }
@@ -65,12 +72,16 @@ export class ListItemFormComponent implements OnInit , OnDestroy{
 
   onSubmit(): void {
     this.isSubmitted = true;
+    console.log(this.listItemForm.value);
+    
     this.submitData();
   }
 
   submitData(): void {    
     if (this.isAdd) {
       //Add
+      const id = this.route.snapshot.paramMap.get('listId');
+      this.listItemForm.patchValue({listId: id})
       this.postListItem$ = this.listItemService.postListItem(this.listItemForm.value).subscribe(result => {
           this.router.navigateByUrl('/');
         },

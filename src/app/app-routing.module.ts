@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'newlist', component: ListFormComponentComponent },
   { path: 'editlist/:id', component: ListFormComponentComponent },
-  { path: 'newlistitem', component: ListItemFormComponent },
+  { path: 'newlistitem/:listId', component: ListItemFormComponent },
   { path: 'editlistitem/:id', component: ListItemFormComponent },
 
 
